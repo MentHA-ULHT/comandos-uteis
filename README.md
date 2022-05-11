@@ -20,11 +20,16 @@ Passos para manipular models.y e a Base de dados:
 
 # campo ImageField
 
+[How to manage static files](https://docs.djangoproject.com/en/4.0/howto/static-files/)
+
 Passos para ter um campo para carregar corretamente uma imagem para uma pasta que queiramos:
 
 1. Primeiro devemos dar instruções para criar uma pasta (MEDIA) onde guardar as imagens. Colocar em settings.py:
 
 ```Python
+# settings.py
+
+import os
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 ```
@@ -32,12 +37,19 @@ MEDIA_URL = "/media/"
 2. no app/urls.py   (funciona no config/urls.py ?!): 
 
 ```Python
-urlPatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# config/urls.py
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
 Depois podemos utilizar na definição do atributo da classe. Podemos especificar  no `upload_to` a pasta, dentro da pasta MEDIA, onde queremos guardar. Por exemplo, em baixo queremos guardar uma imagem duma resposta duma resolução (com id 3) de um teste feito por um paciente (com id 1) em `users/1/resolutions/3`:
 
 ```Python
+# views.py
+
 def resolution_path(instance, filename):
     return f'users/{instance.resolution.patient.id}/resolutions/{instance.resolution.id}'
     
