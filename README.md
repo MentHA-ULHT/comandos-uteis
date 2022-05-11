@@ -20,7 +20,8 @@ Passos para manipular models.y e a Base de dados:
 
 # campo ImageField
 
-[How to manage static files](https://docs.djangoproject.com/en/4.0/howto/static-files/)
+* [How to manage static files](https://docs.djangoproject.com/en/4.0/howto/static-files/)
+* [How to upload and display images](https://studygyaan.com/django/how-to-upload-and-display-image-in-django)
 
 Passos para ter um campo para carregar corretamente uma imagem para uma pasta que queiramos:
 
